@@ -31,6 +31,17 @@ const data = [
     data: upcomingMatches,
   },
 ];
+export interface Team {
+  TeamID: number,
+  Key: string,
+  City: string,
+  Name: string,
+  PrimaryColor: string,
+  SecondaryColor: string,
+  TertiaryColor: string,
+  QuaternaryColor: string,
+  WikipediaLogoUrl: string,
+}
 
 export interface Match {
   GameID: number,
@@ -44,6 +55,10 @@ export interface Match {
   HomeTeamScore: number,
   IsClosed: boolean,
   GameEndDateTime: string,
+  // client level fields
+  AwayTeamEntity: Team,
+  HomeTeamEntity: Team,
+  isInPast: boolean,
 }
 
 export default class MatchesContainer extends React.Component {

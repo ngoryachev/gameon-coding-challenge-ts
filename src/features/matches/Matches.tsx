@@ -8,8 +8,8 @@ import {
   Image,
   Dimensions,
 } from 'react-native';
-import Game from "./Game";
-import {Match} from "./MatchesContainer";
+import Game from './Game';
+import {Match} from './MatchesContainer';
 
 const Title = ({title}) => (
   <View style={styles.titleStyle}>
@@ -25,29 +25,7 @@ type MatchesProps = {
 };
 
 export default class Matches extends React.Component<MatchesProps> {
-  renderItem = ({
-    item: {
-      AwayTeamScore,
-      HomeTeamScore,
-      DateTime,
-      AwayTeam,
-      HomeTeam,
-      AwayTeamEntity: {Name: AwayTeamName},
-      HomeTeamEntity: {Name: HomeTeamName},
-      isInPast,
-    },
-  }) => (
-    <Game
-      dateTime={new Date(DateTime).toDateString()}
-      teamACode={HomeTeam}
-      teamBCode={AwayTeam}
-      teamAScore={HomeTeamScore}
-      teamBScore={AwayTeamScore}
-      teamAName={HomeTeamName}
-      teamBName={AwayTeamName}
-      isInPast={isInPast}
-    />
-  );
+  renderItem = ({item}) => <Game {...item} />;
 
   renderSectionHeader = ({section: item}) => <Title title={item.title} />;
 

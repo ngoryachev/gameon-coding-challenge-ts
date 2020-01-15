@@ -1,5 +1,5 @@
 export default {
-  padding: 32,
-  halfPadding: 16,
+  padding: 16,
+  halfPadding: 8,
   borderRadius: 8,
 };

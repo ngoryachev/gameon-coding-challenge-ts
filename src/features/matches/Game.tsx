@@ -1,46 +1,48 @@
-import {Dimensions, StyleSheet, Text, View} from "react-native";
-import React from "react";
+import {Dimensions, StyleSheet, Text, View} from 'react-native';
+import React from 'react';
+import {Column, Row} from '../../components';
+import {Match} from './MatchesContainer';
+import sizes from '../../styles/sizes';
+import {Filler, Spacer} from '../../utils/uiUtils';
 
-const Game = ({
-                teamACode,
-                teamAScore,
-                teamAName,
-                teamBCode,
-                teamBScore,
-                teamBName,
-                dateTime,
-                isInPast,
-              }) => (
-  <View style={styles.gameContainerStyle}>
-    <View style={styles.teamRow}>
-      <View style={styles.teamCircle}>
-        <Text>{teamACode}</Text>
-      </View>
-      <View style={styles.filler} />
-      <Text>{teamAName}</Text>
-    </View>
-    {isInPast && (
-      <View style={styles.scoreRow}>
-        <Text>{teamAScore}</Text>
-        <Text>AT</Text>
-        <Text>{teamBScore}</Text>
-      </View>
-    )}
-    <View style={styles.teamRow}>
-      <View style={styles.teamCircle}>
-        <Text>{teamBCode}</Text>
-      </View>
-      <View style={styles.filler} />
-      <Text>{teamBName}</Text>
-    </View>
-    {dateTime && (
-      <View style={styles.timeContainer}>
-        <View style={styles.timeView}>
-          <Text>{dateTime}</Text>
-        </View>
-      </View>
-    )}
-  </View>
+const LogoAndText = (props: {code: string; city: string; name: string}) => (
+  <Column alignCenter>
+    <Text>{props.code}</Text>
+    <Spacer h={10} />
+    <Text>{props.city}</Text>
+    <Text>{props.name}</Text>
+  </Column>
+);
+
+const Score = (props: Match) => (
+  <Row>
+    <Text>1</Text>
+    <Text>:</Text>
+    <Text>0</Text>
+  </Row>
+);
+
+const Game = (props: Match) => (
+  <Column
+    style={{
+      borderRadius: sizes.borderRadius,
+      borderWidth: 1,
+      borderColor: 'black',
+      padding: sizes.padding,
+    }}>
+    <Row>
+      <Text style={{flex: 1, textAlign: 'center'}}>Лига чемпионов</Text>
+    </Row>
+    <Row alignCenter>
+      <Filler />
+      <LogoAndText code={props.HomeTeam} city={props.HomeTeamEntity.City} name={props.HomeTeamEntity.Name} />
+      <Filler />
+      {props.IsClosed ? <Score {...props} /> : <Text>VS</Text>}
+      <Filler />
+      <LogoAndText code={props.AwayTeam} city={props.AwayTeamEntity.City} name={props.AwayTeamEntity.Name} />
+      <Filler />
+    </Row>
+  </Column>
 );
 
 export default Game;
@@ -48,49 +50,4 @@ export default Game;
 const screenPaddings = 16;
 const listWidth = Dimensions.get('window').width - screenPaddings * 2;
 
-const styles = StyleSheet.create({
-  gameContainerStyle: {
-    flexDirection: 'column',
-    minWidth: listWidth,
-    borderRadius: 25,
-    borderWidth: 1,
-    borderColor: 'black',
-    padding: 4,
-    marginBottom: 4,
-  },
-  teamRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  teamCircle: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    borderWidth: 1,
-    borderColor: 'black',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  filler: {
-    width: 4,
-  },
-  scoreRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-  },
-  timeContainer: {
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-  },
-  timeView: {
-    height: 20,
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: 'black',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginRight: 20,
-    paddingHorizontal: 4,
-  },
-});
+const styles = StyleSheet.create({});
