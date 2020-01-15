@@ -1,9 +1,6 @@
 import React from 'react';
-import Matches from "./src/features/matches/Matches";
-
+import MatchesContainer from './src/features/matches/MatchesContainer';
 
 export default function App() {
-  return (
-    <Matches />
-  );
+  return <MatchesContainer />;
 }
