@@ -2,6 +2,7 @@ import React from 'react';
 import {TouchableOpacity, View, ViewStyle} from 'react-native';
 import {centerStyle} from './utils/uiUtils';
 import {Proc} from '../declarations';
+import * as R from 'ramda';
 
 export interface LineProps {
   children?: any;
@@ -45,7 +46,8 @@ export const Column = Line('column');
 
 export type CircleProps = {
   size: number;
-  color: string;
+  color?: string;
+  borderColor?: string;
   children: any;
   onPress?: Proc;
 };
@@ -59,7 +61,9 @@ export const Circle = (props: CircleProps) => {
         width: props.size,
         height: props.size,
         borderRadius: props.size * 0.5,
-        backgroundColor: props.color,
+        borderWidth: 1,
+        borderColor: R.defaultTo('transparent', props.borderColor),
+        backgroundColor: R.defaultTo('transparent', props.color),
         ...centerStyle,
       }}>
       {props.children}
