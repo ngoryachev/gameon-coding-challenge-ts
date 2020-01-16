@@ -38,7 +38,9 @@ const Game = (props: Match) => (
     <Row>
       <Text style={{flex: 1, textAlign: 'center'}}>{moment(props.DateTime).format('MM/DD/YYYY h:mm A')}</Text>
     </Row>
-    <Spacer h={10} />
+    <Spacer h={16} />
+    <View style={{ height: 1, width: '100%', backgroundColor: 'black' }}></View>
+    <Spacer h={16} />
     <Row alignCenter>
       <Filler />
       <LogoAndText code={props.HomeTeam} city={props.HomeTeamEntity.City} name={props.HomeTeamEntity.Name} />
