@@ -13,11 +13,13 @@ import {Match} from './MatchesContainer';
 import {Spacer} from '../../utils/uiUtils';
 import sizes from '../../styles/sizes';
 import * as R from 'ramda';
-import colors from "../../styles/colors";
+import colors from '../../styles/colors';
 
 const Title = ({title}) => (
   <View style={styles.titleStyle}>
-    <Text style={{color: colors.textColor}}>{title}</Text>
+    <Text style={{color: colors.textColor, fontSize: 14, fontWeight: 'bold'}}>
+      {title}
+    </Text>
   </View>
 );
 
@@ -60,8 +62,7 @@ export default class Matches extends React.Component<MatchesProps> {
   };
 }
 
-const screenPaddings = 16;
-const listWidth = Dimensions.get('window').width - screenPaddings * 2;
+const listWidth = Dimensions.get('window').width - sizes.padding * 2;
 
 const styles = StyleSheet.create({
   container: {

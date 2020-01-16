@@ -1,13 +1,17 @@
-import {Dimensions, StyleProp, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text} from 'react-native';
 import React from 'react';
 import {Circle, Column, Row} from '../../components';
 import {Match} from './MatchesContainer';
 import sizes from '../../styles/sizes';
-import {centerStyle, Filler, Spacer} from '../../utils/uiUtils';
+import {Filler, Spacer} from '../../utils/uiUtils';
 import moment from 'moment';
 import colors from '../../styles/colors';
 
-const styleCode: any = {fontSize: 18, fontWeight: 'bold', color: colors.baseColor};
+const styleCode: any = {
+  fontSize: 18,
+  fontWeight: 'bold',
+  color: colors.baseColor,
+};
 const style: any = {fontSize: 14, fontWeight: 'bold', color: colors.textColor};
 const style_: any = {fontSize: 16, fontWeight: 'bold', color: colors.textColor};
 const LogoAndText = (props: {code: string; city: string; name: string}) => (

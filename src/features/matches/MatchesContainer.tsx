@@ -23,42 +23,42 @@ const upcomingMatches = matchesWithTeams.filter(({isInPast}) => !isInPast);
 
 const data = [
   {
-    title: 'Past Games',
+    title: 'PAST GAMES',
     data: pastMatches,
   },
   {
-    title: 'Upcoming Games',
+    title: 'UPCOMING GAMES',
     data: upcomingMatches,
   },
 ];
 export interface Team {
-  TeamID: number,
-  Key: string,
-  City: string,
-  Name: string,
-  PrimaryColor: string,
-  SecondaryColor: string,
-  TertiaryColor: string,
-  QuaternaryColor: string,
-  WikipediaLogoUrl: string,
+  TeamID: number;
+  Key: string;
+  City: string;
+  Name: string;
+  PrimaryColor: string;
+  SecondaryColor: string;
+  TertiaryColor: string;
+  QuaternaryColor: string;
+  WikipediaLogoUrl: string;
 }
 
 export interface Match {
-  GameID: number,
-  Status: "Final" | "Pending",
-  DateTime: string,
-  AwayTeam: "WAS",
-  HomeTeam: "CHA",
-  AwayTeamID: number,
-  HomeTeamID: number,
-  AwayTeamScore: number,
-  HomeTeamScore: number,
-  IsClosed: boolean,
-  GameEndDateTime: string,
+  GameID: number;
+  Status: 'Final' | 'Pending';
+  DateTime: string;
+  AwayTeam: 'WAS';
+  HomeTeam: 'CHA';
+  AwayTeamID: number;
+  HomeTeamID: number;
+  AwayTeamScore: number;
+  HomeTeamScore: number;
+  IsClosed: boolean;
+  GameEndDateTime: string;
   // client level fields
-  AwayTeamEntity: Team,
-  HomeTeamEntity: Team,
-  isInPast: boolean,
+  AwayTeamEntity: Team;
+  HomeTeamEntity: Team;
+  isInPast: boolean;
 }
 
 export default class MatchesContainer extends React.Component {
