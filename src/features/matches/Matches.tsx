@@ -17,13 +17,11 @@ import colors from '../../styles/colors';
 
 const Title = ({title}) => (
   <View style={styles.titleStyle}>
-    <Text style={{color: colors.textColor, fontSize: 14, fontWeight: 'bold'}}>
-      {title}
-    </Text>
+    <Text style={styles.titleText}>{title}</Text>
   </View>
 );
 
-type MatchesProps = {
+export type MatchesProps = {
   data: Array<{
     title: string;
     data: Array<Match>;
@@ -85,5 +83,10 @@ const styles = StyleSheet.create({
     width: listWidth,
     height: listWidth * 0.65,
     marginTop: 44,
+  },
+  titleText: {
+    color: colors.textColor,
+    fontSize: 14,
+    fontWeight: 'bold',
   },
 });
