@@ -61,7 +61,7 @@ const Game = (props: Match) => (
       </Row>
     </Column>
     <Row style={styles.gameStatusContainer}>
-      <Text style={styles.gameStatusText}>FINISHED</Text>
+      <Text style={styles.gameStatusText}>{props.IsClosed ? 'FINISHED' : 'NOT FINISHED'}</Text>
       <Column style={styles.gameDateContainer}>
         <Text style={styles.gameDateText}>
           {moment(props.DateTime).format('MM/DD/YY')}
