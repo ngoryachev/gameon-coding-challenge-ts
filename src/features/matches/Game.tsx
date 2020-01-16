@@ -6,6 +6,7 @@ import sizes from '../../styles/sizes';
 import {Filler, Spacer} from '../../utils/uiUtils';
 import moment from 'moment';
 import colors from '../../styles/colors';
+import { SvgUri } from 'react-native-svg';
 
 const styleCode: any = {
   fontSize: 18,
@@ -14,10 +15,14 @@ const styleCode: any = {
 };
 const style: any = {fontSize: 14, fontWeight: 'bold', color: colors.textColor};
 const style_: any = {fontSize: 16, fontWeight: 'bold', color: colors.textColor};
-const LogoAndText = (props: {code: string; city: string; name: string}) => (
+const LogoAndText = (props: {code: string; city: string; name: string, uri: string}) => (
   <Column alignCenter style={{minWidth: 80}}>
-    <Circle size={60} borderColor={colors.shadowColor}>
-      <Text style={styleCode}>{props.code}</Text>
+    <Circle size={60}>
+      <SvgUri
+        width={60}
+        height={60}
+        uri={props.uri}
+      />
     </Circle>
     <Spacer h={10} />
     <Text style={style}>{props.city}</Text>
@@ -54,6 +59,7 @@ const Game = (props: Match) => (
           code={props.HomeTeam}
           city={props.HomeTeamEntity.City}
           name={props.HomeTeamEntity.Name}
+          uri={props.HomeTeamEntity.WikipediaLogoUrl}
         />
         <Filler />
         {props.IsClosed ? <Score {...props} /> : <Text style={style_}>VS</Text>}
@@ -62,6 +68,7 @@ const Game = (props: Match) => (
           code={props.AwayTeam}
           city={props.AwayTeamEntity.City}
           name={props.AwayTeamEntity.Name}
+          uri={props.AwayTeamEntity.WikipediaLogoUrl}
         />
         <Filler />
       </Row>
