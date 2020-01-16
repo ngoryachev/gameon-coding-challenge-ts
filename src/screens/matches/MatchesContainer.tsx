@@ -1,24 +1,8 @@
 import React from 'react';
 import Matches from './Matches';
-import * as R from 'ramda';
+import getSectionsData from "./getSectionsData";
 
-const matches = require('./matches');
-const teams = require('./teams');
-
-const now = () => new Date();
-
-const teamsById = R.groupBy(R.prop('TeamID'), teams);
-const data = R.pipe(
-  R.map((match: Match): Match => ({
-    ...match,
-    AwayTeamEntity: teamsById[match.AwayTeamID][0],
-    HomeTeamEntity: teamsById[match.HomeTeamID][0],
-    isInPast: new Date(match.DateTime) < now(),
-  } as Match)),
-  R.groupBy((match: Match) => match.isInPast ? 'PAST GAMES' : 'UPCOMING  GAMES'),
-  R.toPairs,
-  R.map(([key, value]) => ({title: key, data: value}))
-)(matches);
+const sectionsData = getSectionsData();
 
 export interface Team {
   TeamID: number;
@@ -52,6 +36,6 @@ export interface Match {
 
 export default class MatchesContainer extends React.Component {
   render = () => {
-    return <Matches data={data} />;
+    return <Matches data={sectionsData} />;
   };
 }
