@@ -35,5 +35,5 @@ export interface Match {
 const sectionsData = getSectionsData();
 
 export default function() {
-  return <MatchesScreen data={sectionsData} />;
+  return <MatchesScreen sectionData={sectionsData} />;
 }

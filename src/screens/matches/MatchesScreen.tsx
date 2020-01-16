@@ -6,7 +6,7 @@ import {
   SafeAreaView,
   SectionList,
   Image,
-  Dimensions,
+  Dimensions, SectionListData,
 } from 'react-native';
 import Game from './Game';
 import {Match} from './MatchesContainer';
@@ -21,14 +21,7 @@ const Title = ({title}) => (
   </View>
 );
 
-export type MatchesProps = {
-  data: Array<{
-    title: string;
-    data: Array<Match>;
-  }>;
-};
-
-export default class MatchesScreen extends React.Component<MatchesProps> {
+export default class MatchesScreen extends React.Component<{sectionData: ReadonlyArray<SectionListData<Match>>}> {
   renderItem = ({item}) => <Game {...item} />;
 
   renderSectionHeader = ({section: item}) => <Title title={item.title} />;
@@ -47,7 +40,7 @@ export default class MatchesScreen extends React.Component<MatchesProps> {
     return (
       <SafeAreaView style={styles.container}>
         <SectionList
-          sections={this.props.data}
+          sections={this.props.sectionData}
           renderItem={this.renderItem}
           renderSectionHeader={this.renderSectionHeader}
           keyExtractor={this.keyExtractor}

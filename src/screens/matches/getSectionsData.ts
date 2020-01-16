@@ -1,15 +1,16 @@
 import * as R from "ramda";
 import {Match} from "./MatchesContainer";
+import {SectionListData} from "react-native";
 
-export default function getSectionsData() {
-  const matches = require('./data/matches');
-  const teams = require('./data/teams');
-
+export default function getSectionsData({
+  matches = require('./data/matches'),
+  teams = require('./data/teams')
+} = {}): ReadonlyArray<SectionListData<Match>> {
   const now = () => new Date();
 
   const teamsById = R.groupBy(R.prop('TeamID'), teams);
 
-  const data = R.pipe(
+  return R.pipe(
     R.map((match: Match): Match => ({
       ...match,
       AwayTeamEntity: teamsById[match.AwayTeamID][0],
@@ -20,6 +21,4 @@ export default function getSectionsData() {
     R.toPairs,
     R.map(([key, value]) => ({title: key, data: value}))
   )(matches);
-
-  return data;
 }
