@@ -23,11 +23,11 @@ const upcomingMatches = matchesWithTeams.filter(({isInPast}) => !isInPast);
 
 const data = [
   {
-    title: 'Past',
+    title: 'Past Games',
     data: pastMatches,
   },
   {
-    title: 'Upcoming',
+    title: 'Upcoming Games',
     data: upcomingMatches,
   },
 ];

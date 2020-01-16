@@ -13,10 +13,11 @@ import {Match} from './MatchesContainer';
 import {Spacer} from '../../utils/uiUtils';
 import sizes from '../../styles/sizes';
 import * as R from 'ramda';
+import colors from "../../styles/colors";
 
 const Title = ({title}) => (
   <View style={styles.titleStyle}>
-    <Text>{title}</Text>
+    <Text style={{color: colors.textColor}}>{title}</Text>
   </View>
 );
 
@@ -74,7 +75,7 @@ const styles = StyleSheet.create({
     padding: 8,
     borderRadius: 16,
     borderWidth: 1,
-    borderColor: 'black',
+    borderColor: colors.shadowColor,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 4,
