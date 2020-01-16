@@ -1,8 +1,6 @@
 import React from 'react';
-import Matches from './Matches';
+import MatchesScreen from './MatchesScreen';
 import getSectionsData from "./getSectionsData";
-
-const sectionsData = getSectionsData();
 
 export interface Team {
   TeamID: number;
@@ -34,8 +32,8 @@ export interface Match {
   isInPast: boolean;
 }
 
-export default class MatchesContainer extends React.Component {
-  render = () => {
-    return <Matches data={sectionsData} />;
-  };
+const sectionsData = getSectionsData();
+
+export default function() {
+  return <MatchesScreen data={sectionsData} />;
 }

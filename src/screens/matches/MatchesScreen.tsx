@@ -28,7 +28,7 @@ export type MatchesProps = {
   }>;
 };
 
-export default class Matches extends React.Component<MatchesProps> {
+export default class MatchesScreen extends React.Component<MatchesProps> {
   renderItem = ({item}) => <Game {...item} />;
 
   renderSectionHeader = ({section: item}) => <Title title={item.title} />;
