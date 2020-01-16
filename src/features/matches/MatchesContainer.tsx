@@ -1,36 +1,25 @@
 import React from 'react';
 import Matches from './Matches';
+import * as R from 'ramda';
 
 const matches = require('./matches');
 const teams = require('./teams');
 
 const now = () => new Date();
 
-const teamsById = teams.reduce((memo, item) => {
-  memo[item.TeamID] = item;
-  return memo;
-}, {});
+const teamsById = R.groupBy(R.prop('TeamID'), teams);
+const data = R.pipe(
+  R.map((match: Match): Match => ({
+    ...match,
+    AwayTeamEntity: teamsById[match.AwayTeamID][0],
+    HomeTeamEntity: teamsById[match.HomeTeamID][0],
+    isInPast: new Date(match.DateTime) < now(),
+  } as Match)),
+  R.groupBy((match: Match) => match.isInPast ? 'PAST GAMES' : 'UPCOMING  GAMES'),
+  R.toPairs,
+  R.map(([key, value]) => ({title: key, data: value}))
+)(matches);
 
-const matchesWithTeams = matches.map(match => ({
-  ...match,
-  AwayTeamEntity: teamsById[match.AwayTeamID],
-  HomeTeamEntity: teamsById[match.HomeTeamID],
-  isInPast: new Date(match.DateTime) < now(),
-}));
-
-const pastMatches = matchesWithTeams.filter(({isInPast}) => isInPast);
-const upcomingMatches = matchesWithTeams.filter(({isInPast}) => !isInPast);
-
-const data = [
-  {
-    title: 'PAST GAMES',
-    data: pastMatches,
-  },
-  {
-    title: 'UPCOMING GAMES',
-    data: upcomingMatches,
-  },
-];
 export interface Team {
   TeamID: number;
   Key: string;
@@ -47,8 +36,8 @@ export interface Match {
   GameID: number;
   Status: 'Final' | 'Pending';
   DateTime: string;
-  AwayTeam: 'WAS';
-  HomeTeam: 'CHA';
+  AwayTeam: string;
+  HomeTeam: string;
   AwayTeamID: number;
   HomeTeamID: number;
   AwayTeamScore: number;
