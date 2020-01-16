@@ -4,18 +4,18 @@ import Matches from './Matches';
 const matches = require('./matches');
 const teams = require('./teams');
 
-const now = new Date();
+const now = () => new Date();
 
-const teamsAsHash = teams.reduce((memo, item) => {
+const teamsById = teams.reduce((memo, item) => {
   memo[item.TeamID] = item;
   return memo;
 }, {});
 
 const matchesWithTeams = matches.map(match => ({
   ...match,
-  AwayTeamEntity: teamsAsHash[match.AwayTeamID],
-  HomeTeamEntity: teamsAsHash[match.HomeTeamID],
-  isInPast: match => new Date(match.DateTime) < now,
+  AwayTeamEntity: teamsById[match.AwayTeamID],
+  HomeTeamEntity: teamsById[match.HomeTeamID],
+  isInPast: new Date(match.DateTime) < now(),
 }));
 
 const pastMatches = matchesWithTeams.filter(({isInPast}) => isInPast);

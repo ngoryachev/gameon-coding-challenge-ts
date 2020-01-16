@@ -30,7 +30,7 @@ const Score = (props: Match) => (
 const Game = (props: Match) => (
   <Column
     style={{
-      borderRadius: sizes.borderRadius,
+      borderRadius: sizes.borderRadius * 2,
       borderWidth: 1,
       borderColor: 'black',
       padding: sizes.padding,
@@ -52,8 +52,5 @@ const Game = (props: Match) => (
 );
 
 export default Game;
-
-const screenPaddings = 16;
-const listWidth = Dimensions.get('window').width - screenPaddings * 2;
 
 const styles = StyleSheet.create({});

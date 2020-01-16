@@ -10,6 +10,9 @@ import {
 } from 'react-native';
 import Game from './Game';
 import {Match} from './MatchesContainer';
+import {Spacer} from '../../utils/uiUtils';
+import sizes from '../../styles/sizes';
+import * as R from 'ramda';
 
 const Title = ({title}) => (
   <View style={styles.titleStyle}>
@@ -48,6 +51,8 @@ export default class Matches extends React.Component<MatchesProps> {
           renderSectionHeader={this.renderSectionHeader}
           keyExtractor={this.keyExtractor}
           ListHeaderComponent={this.renderListHeaderComponent}
+          ItemSeparatorComponent={R.always(<Spacer h={sizes.padding} />)}
+          SectionSeparatorComponent={R.always(<Spacer h={sizes.padding} />)}
         />
       </SafeAreaView>
     );
